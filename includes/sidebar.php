@@ -1,49 +1,48 @@
+<!-- db -->
+<!-- <?php include('./includes/db.php')  ?> -->
+
+
+
 <div class="col-md-4">
 
     <!-- Blog Search Well -->
-    <div class="well">
-        <h4>Blog Search</h4>
-        <div class="input-group">
-            <input type="text" class="form-control">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
+    <form action="index_search.php" method="post">
+        <div class="well">
+            <h4>Blog Search</h4>
+            <div class="input-group">
+                <input type="text" name="input" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" name="submit" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div>
+            <!-- /.input-group -->
         </div>
-        <!-- /.input-group -->
-    </div>
+    </form>
 
     <!-- Blog Categories Well -->
     <div class="well">
         <h4>Blog Categories</h4>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <ul class="list-unstyled">
-                    <li><a href="#">Category Name</a>
-                    </li>
-                    <li><a href="#">Category Name</a>
-                    </li>
-                    <li><a href="#">Category Name</a>
-                    </li>
-                    <li><a href="#">Category Name</a>
-                    </li>
+                    <?php
+                    $query = "SELECT * FROM categories";
+                    $result = mysqli_query($connection, $query);
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $item = $row['cat_title'];
+                            echo "<li><a href='#'>$item</a></li>";
+                        }
+                    }
+
+
+
+                    ?>
                 </ul>
             </div>
-            <!-- /.col-lg-6 -->
-            <div class="col-lg-6">
-                <ul class="list-unstyled">
-                    <li><a href="#">Category Name</a>
-                    </li>
-                    <li><a href="#">Category Name</a>
-                    </li>
-                    <li><a href="#">Category Name</a>
-                    </li>
-                    <li><a href="#">Category Name</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.col-lg-6 -->
+
         </div>
         <!-- /.row -->
     </div>

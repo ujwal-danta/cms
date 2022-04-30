@@ -9,6 +9,8 @@
 
 
 
+
+
 <!-- Page Content -->
 <div class="container">
 
@@ -26,8 +28,15 @@
 
             <?php
 
-            $query = "SELECT * FROM posts";
+
+            $input = $_POST['input'];
+            $query = "SELECT * FROM posts WHERE post_tags LIKE '%$input%' ";
             $result = mysqli_query($connection, $query);
+            if (mysqli_num_rows($result)) {
+                echo "<h1?> Results Found </h1>";
+            } else {
+                echo "<h1>Not Found</h1>";
+            }
             while ($row = mysqli_fetch_assoc($result)) {
                 $post_title = $row["post_title"];
                 $post_author = $row["post_author"];
