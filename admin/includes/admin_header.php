@@ -1,4 +1,10 @@
+<?php ob_start(); ?>
+
+<!-- db -->
 <?php include '../includes/db.php' ?>
+
+<!-- functions -->
+<?php include 'functions.php' ?>
 
 
 
