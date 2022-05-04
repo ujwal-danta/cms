@@ -31,14 +31,7 @@
 
                         <?php
                         //DELETE
-                        if (isset($_GET['delete_id'])) {
-                            $delete_id = $_GET['delete_id'];
-                            $delete_query = "DELETE FROM categories WHERE cat_id = {$delete_id}";
-                            $delete = mysqli_query($connection, $delete_query);
-                            if (!$delete) {
-                                die("QUERY FAILED" . " " . mysqli_error($connection));
-                            }
-                        }
+                        delete_category();
 
 
                         ?>
@@ -63,10 +56,7 @@
 
                     </div>
                     <div class="col-xs-6">
-                        <?php
-                        $query = "SELECT * FROM categories";
-                        $result = mysqli_query($connection, $query);
-                        ?>
+
 
 
 
@@ -81,16 +71,7 @@
                             <tbody>
 
                                 <?php
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    $cat_id =  $row['cat_id'];
-                                    $cat_title =  $row['cat_title'];
-                                    echo "<tr>";
-                                    echo "<td>{$cat_id}</td>";
-                                    echo "<td>{$cat_title}</td>";
-                                    echo "<td><a href='categories.php?delete_id={$cat_id}'>DELETE</a></td>";
-                                    echo "<td><a href='categories.php?edit_id={$cat_id}'>EDIT</a></td>";
-                                    echo "<tr>";
-                                }
+                                find_all_categories();
                                 ?>
                             </tbody>
                         </table>
