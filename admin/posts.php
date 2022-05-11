@@ -1,6 +1,15 @@
 <!-- header -->
 <?php include 'includes/admin_header.php' ?>
 
+<?php
+if (isset($_GET['delete_id'])) {
+    $the_post_id = $_GET['delete_id'];
+    $query = "DELETE FROM posts WHERE post_id = $the_post_id";
+    $result = mysqli_query($connection, $query);
+}
+
+?>
+
 
 
 
@@ -34,8 +43,8 @@
                         case 'add_post':
                             include './includes/add_post.php';
                             break;
-                        case '2':
-                            echo "Request 2";
+                        case 'edit_post':
+                            include './includes/edit_post.php';
                             break;
                         default:
                             include './includes/get_all_posts.php';

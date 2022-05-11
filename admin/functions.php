@@ -1,5 +1,13 @@
 <?php
 
+function confirm($result)
+{
+    global $connection;
+    if (!$result) {
+        die("Error inserting " . mysqli_error($connection));
+    }
+}
+
 function insert_category()
 {
     global $connection;
